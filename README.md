@@ -10,3 +10,9 @@ ADD YARN TSCONFIG-PATHS -D
 ADD YARN PRETTIER -D
 ### yarn add prettier -D
 
+ADD YARN EXPRESS CORS EXPRESS-ASYNC-ERRORS
+### yarn add express cors express-async-errors -D
+
+ADD YARN -D @TYPES/EXPRESS  @TYPES/CORS
+### yarn add @types/express @types/cors -D
+
