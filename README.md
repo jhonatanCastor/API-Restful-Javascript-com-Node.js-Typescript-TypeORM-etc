@@ -16,3 +16,5 @@ ADD YARN EXPRESS CORS EXPRESS-ASYNC-ERRORS
 ADD YARN -D @TYPES/EXPRESS  @TYPES/CORS
 ### yarn add @types/express @types/cors -D
 
+ADD YARN TYPEORM REFLECT-METADA PG
+### yarn add typeorm pg reflect-metadata -D
