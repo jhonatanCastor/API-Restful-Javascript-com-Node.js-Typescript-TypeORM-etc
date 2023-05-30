@@ -29,5 +29,4 @@ class Product {
     this.updated_at = updated_at;
   }
 }
-
 export default Product;
