@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-
 @Entity('products')
 class Product {
   @PrimaryGeneratedColumn('uuid')

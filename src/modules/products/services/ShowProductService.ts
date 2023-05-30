@@ -1,6 +1,6 @@
 import { getCustomRepository } from "typeorm";
-import Product from "./product";
-import { ProductRepository } from "./productRepository";
+import Product from "../product";
+import { ProductRepository } from "../productRepository";
 
 interface IRequest {
   id: string | any;
