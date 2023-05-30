@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-
 @Entity('products')
 class Product {
   @PrimaryGeneratedColumn('uuid')
@@ -29,5 +28,4 @@ class Product {
     this.updated_at = updated_at;
   }
 }
-
 export default Product;
