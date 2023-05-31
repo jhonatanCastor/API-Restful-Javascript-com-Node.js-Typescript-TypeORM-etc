@@ -22,4 +22,5 @@ class CreateProducteService {
     await productsRepository.save(product);
   }
 }
+
 export default CreateProducteService;
