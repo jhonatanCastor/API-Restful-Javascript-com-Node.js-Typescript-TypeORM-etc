@@ -1,11 +1,9 @@
 import { getCustomRepository } from "typeorm";
 import Product from "../product";
 import { ProductRepository } from "../productRepository";
-
 interface IRequest {
   id: string | any;
 }
-
 class ShowProductServe {
   public async execute({ id }: IRequest): Promise<Product> {
     const productRepository = getCustomRepository(ProductRepository);
