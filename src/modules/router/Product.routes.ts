@@ -24,7 +24,7 @@ productRouter.post('/',
       quantity: Joi.number().required(),
     },
   }),
-  productController.create
+  productController.create 
 );
 
 productRouter.put('/:id',
