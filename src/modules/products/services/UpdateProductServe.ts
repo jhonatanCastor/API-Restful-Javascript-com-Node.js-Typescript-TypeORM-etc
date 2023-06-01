@@ -2,7 +2,7 @@ import { getCustomRepository } from "typeorm";
 import Product from "../product";
 import { ProductRepository } from "../productRepository";
 interface IRequest {
-  id: string | any;
+  id: string | number;
   name: string;
   price: number;
   quantity: number;
@@ -31,6 +31,6 @@ class UpdateProductServe {
 
     return product;
   }
-}
+} 
 
-export default UpdateProductServe
+export default UpdateProductServe; 

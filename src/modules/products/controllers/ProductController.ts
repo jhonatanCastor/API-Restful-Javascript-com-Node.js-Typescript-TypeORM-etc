@@ -34,6 +34,7 @@ export default class ProductController {
       price,
       quantity,
     });
+    
     return response.json(product);
   }
 
@@ -48,7 +49,8 @@ export default class ProductController {
       name,
       price,
       quantity
-    });
+    }); 
+
     return response.json(product);
   }
 
@@ -60,6 +62,8 @@ export default class ProductController {
     await deleteProduct.execute({
       id
     })
+
     return response.json([]);
   }
 }
+

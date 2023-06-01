@@ -7,12 +7,14 @@ interface IRequest {
   quantity: number
 }
 class CreateProducteService {
-  public async execute({ name, price, quantity }: IRequest): Promise<Product | any> {
+  public async execute({ name, price, quantity }: IRequest): Promise<Product | void> {
     const productsRepository = getCustomRepository(ProductRepository);
     const productExist = await productsRepository.findByName(name);
+    
     if (productExist) {
       throw new Error('There is already one product with this name')
     }
+
     const product = productsRepository.create({
       name,
       price,
@@ -20,6 +22,7 @@ class CreateProducteService {
     });
 
     await productsRepository.save(product);
+
   }
 }
 
