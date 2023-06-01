@@ -31,6 +31,6 @@ class UpdateProductServe {
 
     return product;
   }
-} 
+}
 
 export default UpdateProductServe; 
