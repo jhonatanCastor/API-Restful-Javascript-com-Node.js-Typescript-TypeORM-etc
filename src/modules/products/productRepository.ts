@@ -9,7 +9,7 @@ export class ProductRepository extends Repository<Product> {
         name,
       },
     });
-    return product
+    return product;
   }
 }
 
