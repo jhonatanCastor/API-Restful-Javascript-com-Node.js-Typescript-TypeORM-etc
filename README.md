@@ -18,3 +18,9 @@ ADD YARN -D @TYPES/EXPRESS  @TYPES/CORS
 
 ADD YARN TYPEORM REFLECT-METADA PG
 ### yarn add typeorm pg reflect-metadata -D
+
+ADD YARN CELEBRATE
+### yarn add celebrate 
+
+ADD YARN @TYPES/JOI
+### yarn add @types/joi 
