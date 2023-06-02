@@ -36,3 +36,9 @@ ADD YARN JSONWEBTOKEN
 
 ADD YARN -D @TYPES/JSONWEBTOKEN
 ### yarn add -D @types/jsonwebtoken
+
+ADD YARN MULTER
+### yarn add multer
+
+ADD YARN -D @TYPES/MULTER
+### yarn add -D @types/multer
