@@ -2,7 +2,6 @@ import { getCustomRepository } from "typeorm"
 import User from "../User";
 import UserRepósitory from "../UserRepository";
 import { hash } from "bcryptjs";
-
 interface IRequest {
   name: string,
   email: string,
