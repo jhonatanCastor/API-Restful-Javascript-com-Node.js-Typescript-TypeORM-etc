@@ -25,7 +25,7 @@ class CreateSessionService {
     const passwordConfirmed = await compare(password, user.password)
 
     if(!passwordConfirmed){
-      throw new Error('Incorrect password combination.');
+      throw new Error('Incorrect email/password combination.');
     }
 
     const token = sign({}, ahthConfing.jwt.secret, {
