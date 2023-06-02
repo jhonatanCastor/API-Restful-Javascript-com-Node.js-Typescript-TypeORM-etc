@@ -24,3 +24,9 @@ ADD YARN CELEBRATE
 
 ADD YARN @TYPES/JOI
 ### yarn add @types/joi 
+
+ADD YARN BCRYPTJS
+### yarn add bcryptjs
+
+ADD YARN @TYPES/BCYPTJS
+### yarn add -D @types/bcryptjs
