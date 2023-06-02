@@ -30,3 +30,9 @@ ADD YARN BCRYPTJS
 
 ADD YARN @TYPES/BCYPTJS
 ### yarn add -D @types/bcryptjs
+
+ADD YARN JSONWEBTOKEN
+### yarn add jsonwebtoken
+
+ADD YARN -D @TYPES/JSONWEBTOKEN
+### yarn add -D @types/jsonwebtoken
