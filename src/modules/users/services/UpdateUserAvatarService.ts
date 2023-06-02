@@ -4,14 +4,12 @@ import fs from 'fs'
 import User from "../User";
 import UserRepósitory from "../UserRepository";
 import uploadConfig from "@config/upload";
-
 interface IRequest {
   user_id: string;
-  avatarFilename: string;
+  avatarFilename: string | any;
 }
-
 class UpdateUserAvatarService {
-  public async execute({ user_id, avatarFilename }: IRequest): Promise<User | void> {
+  public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
     const usersRepository = getCustomRepository(UserRepósitory);
 
     const user = await usersRepository.findById(user_id);
