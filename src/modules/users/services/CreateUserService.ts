@@ -8,7 +8,6 @@ interface IRequest {
   email: string,
   password: string,
 }
-
 class CreateUserService {
   public async execute({ name, email, password }: IRequest): Promise<User | void> {
     const usersRepository = getCustomRepository(UserRepósitory);

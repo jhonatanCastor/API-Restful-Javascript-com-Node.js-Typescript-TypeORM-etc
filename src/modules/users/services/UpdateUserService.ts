@@ -1,7 +1,6 @@
 import { getCustomRepository } from "typeorm";
 import User from "../User";
 import UserRepósitory from "../UserRepository";
-
 interface IRequest {
   id: string;
   name: string;
