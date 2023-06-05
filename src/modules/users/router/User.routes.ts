@@ -57,10 +57,11 @@ userRouter.delete('/:id',
   userController.delete
 );
 
-userRouter.patch('/avatar',
-isAuthenticated,
-upload.single('avatar',),
-usersAvatarController.update,
+userRouter.patch(
+  '/avatar',
+  isAuthenticated,
+  upload.single('avatar'),
+  usersAvatarController.update
 );
 
 export default userRouter;

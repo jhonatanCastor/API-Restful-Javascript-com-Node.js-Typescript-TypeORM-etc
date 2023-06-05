@@ -9,7 +9,7 @@ class UserAvatarController {
       return response.status(400).json({ error: 'No file provided' });
     }
 
-    const user = updateAvatar.execute({
+    const user = await updateAvatar.execute({
       user_id: request.user.id,
       avatarFilename: request.file.filename,
     });
