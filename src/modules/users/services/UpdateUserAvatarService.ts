@@ -4,9 +4,10 @@ import fs from 'fs'
 import User from "../User";
 import UserRepósitory from "../UserRepository";
 import uploadConfig from "@config/upload";
+import AppError from "@shared/errors/AppError";
 interface IRequest {
   user_id: string;
-  avatarFilename: string | any;
+  avatarFilename: string;
 }
 class UpdateUserAvatarService {
   public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
@@ -15,7 +16,7 @@ class UpdateUserAvatarService {
     const user = await usersRepository.findById(user_id);
 
     if (!user) {
-      throw new Error('User not found');
+      throw new AppError('User not found', 401);
     }
 
     if (user.avatar) {

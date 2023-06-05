@@ -1,16 +1,20 @@
 import { Request, Response } from "express";
 import UpdateUserAvatarService from "../services/UpdateUserAvatarService";
-
 class UserAvatarController {
   public async update(request: Request, response: Response): Promise<Response> {
-     const updateAvatar = new UpdateUserAvatarService();
+    const updateAvatar = new UpdateUserAvatarService();
 
-     const user = updateAvatar.execute({
+    if (!request.file) {
+      // Lógica para lidar com a ausência de request.file
+      return response.status(400).json({ error: 'No file provided' });
+    }
+
+    const user = updateAvatar.execute({
       user_id: request.user.id,
-      avatarFilename: request.file?.filename,
-     });
+      avatarFilename: request.file.filename,
+    });
 
-     return response.json(user);
+    return response.json(user);
   }
 }
 
