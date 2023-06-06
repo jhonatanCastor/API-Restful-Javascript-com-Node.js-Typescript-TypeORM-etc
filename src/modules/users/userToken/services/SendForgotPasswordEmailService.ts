@@ -2,8 +2,6 @@ import { getCustomRepository } from "typeorm"
 import UserRepósitoryt from "@modules/users/UserRepository";
 import AppError from "@shared/errors/AppError";
 import UserTokenRepósitory from "../UserTokenRepository";
-
-
 interface IRequest {
   email: string,
 }
@@ -20,8 +18,6 @@ class UserTokenEmailRepósitory {
 
     const token = await userTokenRepository.generate(user.id);
     console.log(token);
-
-
   }
 }
 
