@@ -11,7 +11,7 @@ interface IRequest {
   password: string
 }
 
-class ResetPasswordUser {
+class ResetPasswordService {
   public async execute({ token, password }: IRequest): Promise<void> {
     const userRepository = getCustomRepository(UserRepósitory);
     const userTokenRepository = getCustomRepository(UserTokenRepósitory);
@@ -40,4 +40,4 @@ class ResetPasswordUser {
   }
 }
 
-export default ResetPasswordUser;
+export default ResetPasswordService;
