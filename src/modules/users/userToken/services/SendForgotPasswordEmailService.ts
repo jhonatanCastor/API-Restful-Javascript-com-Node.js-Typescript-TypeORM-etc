@@ -5,7 +5,7 @@ import UserTokenRepósitory from "../UserTokenRepository";
 interface IRequest {
   email: string,
 }
-class UserTokenEmailRepósitory {
+class SendForgotPasswordEmailService {
   public async execute({ email }: IRequest): Promise<void> {
     const usersRepository = getCustomRepository(UserRepósitoryt);
     const userTokenRepository = getCustomRepository(UserTokenRepósitory);
@@ -21,4 +21,4 @@ class UserTokenEmailRepósitory {
   }
 }
 
-export default UserTokenEmailRepósitory;
+export default SendForgotPasswordEmailService;
