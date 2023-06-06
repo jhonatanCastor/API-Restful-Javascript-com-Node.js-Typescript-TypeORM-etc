@@ -42,3 +42,6 @@ ADD YARN MULTER
 
 ADD YARN -D @TYPES/MULTER
 ### yarn add -D @types/multer
+
+ADD YARN DATE-FNS
+### yarn add date-fns

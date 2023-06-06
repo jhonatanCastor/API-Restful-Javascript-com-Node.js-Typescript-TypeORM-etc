@@ -8,7 +8,6 @@ import AppError from "@shared/errors/AppError";
 import '@shared/typeorm';
 import uploadConfig from '@config/upload'
 
-
 const app = express();
 
 app.use(cors());
