@@ -17,9 +17,9 @@ export default class SendForgotPasswordEmailService {
     if (!user) {
       throw new AppError('User does not exists.', 404)
     }
-    console.log(user);
 
     const token = await userTokenRepository.generate(user.id);
+    console.log("ehihgerhpe",token.token);
 
     const forgotPasswordTemplate = path.resolve(__dirname, '..', '..', 'views', 'forgot_password.hbs')
 
@@ -33,7 +33,7 @@ export default class SendForgotPasswordEmailService {
         file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          link: `http://localhost:3000/reset_password?token=${token}`,
+          link: `http://localhost:3000/reset_password?token=${token.token}`,
         },
       },
     });
