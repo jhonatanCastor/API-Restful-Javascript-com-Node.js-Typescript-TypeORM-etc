@@ -3,14 +3,14 @@ import User from "../User";
 import UserRepósitory from "../UserRepository";
 
 interface IRequest {
-  id: string;
+  user_id: string;
 }
 
-class ShowUserService {
-  public async execute({ id }: IRequest): Promise<User> {
+export default class ShowProfileService {
+  public async execute({ user_id }: IRequest): Promise<User> {
     const userRepository = getCustomRepository(UserRepósitory);
 
-    const user = await userRepository.findOne(id);
+    const user = await userRepository.findById(user_id);
 
     if (!user) {
       throw new Error("User not found");
@@ -19,5 +19,3 @@ class ShowUserService {
     return user;
   }
 }
-
-export default ShowUserService;

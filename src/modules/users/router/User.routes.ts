@@ -34,29 +34,6 @@ userRouter.post('/',
   userController.create
 );
 
-userRouter.put('/:id',
-  celebrate({
-    [Segments.BODY]: {
-      name: Joi.string().required(),
-      email: Joi.string().email().required(),
-      password: Joi.string().required(),
-    },
-    [Segments.PARAMS]: {
-      id: Joi.string().uuid().required(),
-    },
-  }),
-  userController.update
-);
-
-userRouter.delete('/:id',
-  celebrate({
-    [Segments.PARAMS]: {
-      id: Joi.number().required()
-    },
-  }),
-  userController.delete
-);
-
 userRouter.patch(
   '/avatar',
   isAuthenticated,
