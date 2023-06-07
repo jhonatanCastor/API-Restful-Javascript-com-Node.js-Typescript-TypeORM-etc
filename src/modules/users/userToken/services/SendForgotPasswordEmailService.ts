@@ -3,10 +3,11 @@ import UserRepósitoryt from "@modules/users/UserRepository";
 import AppError from "@shared/errors/AppError";
 import UserTokenRepósitory from "../UserTokenRepository";
 import EtherealMail from "@config/mail/EtherealMail";
+import path from 'path';
 interface IRequest {
   email: string,
 }
-class SendForgotPasswordEmailService {
+export default class SendForgotPasswordEmailService {
   public async execute({ email }: IRequest): Promise<void> {
     const usersRepository = getCustomRepository(UserRepósitoryt);
     const userTokenRepository = getCustomRepository(UserTokenRepósitory);
@@ -16,25 +17,24 @@ class SendForgotPasswordEmailService {
     if (!user) {
       throw new AppError('User does not exists.', 404)
     }
-    
+
     const token = await userTokenRepository.generate(user.id);
-    console.log(token);
-    
-    await EtherealMail.sendMail({  
+
+    const forgotPasswordTemplate = path.resolve(__dirname, '..', '..', 'views', 'forgot_password.hbs')
+
+    await EtherealMail.sendMail({
       to: {
         name: user.name,
         email: user.email,
       },
       subject: 'Recuperação de senha',
       templateData: {
-        template: `Olá user token: ${token?.token}`,
+        file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          token: token?.token
-        }
-      }
-    })
+          link: `http://localhost:3000/reset_password?token=${token}`,
+        },
+      },
+    });
   }
 }
-
-export default SendForgotPasswordEmailService;
