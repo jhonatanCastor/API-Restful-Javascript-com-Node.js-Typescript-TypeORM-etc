@@ -14,7 +14,6 @@ interface IRespose {
 }
 class CreateSessionService {
   public async execute({ email, password}: IRequest): Promise<IRespose>{
-
     const userRepository = getCustomRepository(UserRepósitory);
     const user = await userRepository.findEmail(email);
 
