@@ -1,15 +1,14 @@
-
 import { Request, Response } from "express";
 import ShowProfileService from "../services/ShowProfileService";
 import UpdateProfileService from "../services/UpdateProfileService";
-
 export default class ProfileControler {
   public async show(request: Request, response: Response): Promise<Response> {
-    const showProfile = new ShowProfileService();
     const user_id = request.user.id;
 
-    const user = showProfile.execute({ user_id });
+    const showProfile = new ShowProfileService();
 
+    const user = await showProfile.execute({ user_id });
+    
     return response.json(user)
   }
 
@@ -19,7 +18,7 @@ export default class ProfileControler {
 
     const updateProfile = new UpdateProfileService();
 
-    const user = updateProfile.execute({
+    const user = await updateProfile.execute({
       user_id,
       name,
       email,
