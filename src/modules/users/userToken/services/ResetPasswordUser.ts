@@ -5,12 +5,10 @@ import { hash } from "bcryptjs";
 import UserTokenRepósitory from '../UserTokenRepository';
 import AppError from "@shared/errors/AppError";
 
-
 interface IRequest {
   token: string;
   password: string
 }
-
 class ResetPasswordService {
   public async execute({ token, password }: IRequest): Promise<void> {
     const userRepository = getCustomRepository(UserRepósitory);

@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import CreateSessionService from "./CreateSessionService";
-
 class SessionController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body;
