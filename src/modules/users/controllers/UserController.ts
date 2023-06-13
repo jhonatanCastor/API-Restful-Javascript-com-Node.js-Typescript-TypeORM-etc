@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import ListUserService from "../services/ListUserService";
 import CreateUserService from "../services/CreateUserService";
 import ShowProfileService from "../services/ShowProfileService";
+import DeleteUserService from "../services/DeleteUserService";
 class UserController {
   public async index(request: Request, response: Response): Promise<Response> {
     const listUser = new ListUserService();
@@ -33,6 +34,18 @@ class UserController {
     });
 
     return response.json(user);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const deleteUser = new DeleteUserService();
+
+    await deleteUser.execute({
+      id
+    })
+
+    return response.json([]);
   }
 }
 

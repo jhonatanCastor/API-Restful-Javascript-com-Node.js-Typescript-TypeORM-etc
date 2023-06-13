@@ -41,4 +41,12 @@ userRouter.patch(
   usersAvatarController.update
 );
 
+userRouter.delete('/:id', 
+celebrate({
+  [Segments.PARAMS]: {
+    id: Joi.string().uuid().required(),
+  },
+}),
+userController.delete)
+
 export default userRouter;

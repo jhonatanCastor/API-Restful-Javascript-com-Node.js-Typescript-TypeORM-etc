@@ -1,6 +1,5 @@
 import { EntityRepository, Repository } from "typeorm";
 import Customer from "./customer";
-
 @EntityRepository(Customer)
 export default class CustomersRepository extends Repository<Customer> {
 
