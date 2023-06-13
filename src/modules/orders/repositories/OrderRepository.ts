@@ -1,18 +1,15 @@
 import { EntityRepository, Repository } from 'typeorm'
 import Order from '../Order';
 import Customer from '@modules/customers/customer';
-
 interface IProduct {
   product_id: string;
   price: number;
-  quantity: number; 
+  quantity: number;
 }
-
 interface IRequest {
   customer: Customer;
   products: IProduct[];
 }
-
 @EntityRepository(Order)
 export class OrdersRepository extends Repository<Order> {
 
@@ -24,15 +21,15 @@ export class OrdersRepository extends Repository<Order> {
     return order;
   }
 
-  public async createOrder({customer, products}: IRequest): Promise<Order> {
-      const order = this.create({
-        customer,
-        order_products: products,
-      }); 
+  public async createOrder({ customer, products }: IRequest): Promise<Order> {
+    const order = this.create({
+      customer,
+      order_products: products,
+    });
+     
+    await this.save(order);
 
-      await this.save(order);
-
-      return order;
+    return order;
   }
 }
 
