@@ -15,7 +15,7 @@ interface IRequest {
   products: IProduct[];
 }
 
-class CreateProducteService {
+export default class CreateOrderService {
   public async execute({ customer_id, products }: IRequest): Promise<Order> {
     const ordersRepository = getCustomRepository(OrdersRepository);
     const customerRepository = getCustomRepository(CustomersRepository);
@@ -77,4 +77,3 @@ class CreateProducteService {
   }
 }
 
-export default CreateProducteService;
