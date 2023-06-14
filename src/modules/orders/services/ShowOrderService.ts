@@ -14,7 +14,7 @@ export default class ShowOrderService {
     const order = await ordersRepository.findById(id);
 
     if(!order) {
-      throw new AppError("Order not found");
+      throw new AppError("Order not found", 404);
     }
    
      return order;

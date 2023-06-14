@@ -1,7 +1,6 @@
 import { CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn, Column } from "typeorm";
 import Order from "./Order";
 import Product from "@modules/products/product";
-
 @Entity('orders_products')
 export default class OrdersProducts {
   @PrimaryGeneratedColumn('uuid')
@@ -14,6 +13,9 @@ export default class OrdersProducts {
   @ManyToOne(() => Product, product => product.order_products)
   @JoinColumn({name: 'product_id'})
   product: Product
+
+  @Column()
+  product_id: string
 
   @Column('decimal')
   price: number;

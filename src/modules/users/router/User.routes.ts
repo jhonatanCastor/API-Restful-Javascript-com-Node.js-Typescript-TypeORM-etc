@@ -12,7 +12,7 @@ const usersAvatarController = new UserAvatarController();
 
 const upload = multer(uploadConfig);
 
-userRouter.get('/',isAuthenticated, userController.index);
+userRouter.get('/', userController.index);
 
 userRouter.get('/:id',
   celebrate({

@@ -1,9 +1,12 @@
 import { Router } from "express"
 import OrderController from "../controllers/OrdersController"
 import { celebrate, Joi, Segments } from "celebrate";
+import isAuthenticated from "@shared/http/middlewares/isAuthenticated";
 
 const orderRouter = Router();
 const orderControler = new OrderController();
+
+orderRouter.use(isAuthenticated)
 
 orderRouter.get('/:id',
 celebrate({

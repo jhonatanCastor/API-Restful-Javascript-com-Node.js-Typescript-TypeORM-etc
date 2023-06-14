@@ -17,7 +17,7 @@ export class OrdersRepository extends Repository<Order> {
     const order = await this.findOne(id, {
       relations: ['order_products', 'customer']
     });
-
+    
     return order;
   }
 

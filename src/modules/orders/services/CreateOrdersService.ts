@@ -4,17 +4,14 @@ import Order from "../Order";
 import CustomersRepository from "@modules/customers/customersRepository";
 import { ProductRepository } from "@modules/products/productRepository";
 import AppError from "@shared/errors/AppError";
-
 interface IProduct {
   id: string;
   quantity: number;
 }
-
 interface IRequest {
   customer_id: string;
   products: IProduct[];
 }
-
 export default class CreateOrderService {
   public async execute({ customer_id, products }: IRequest): Promise<Order> {
     const ordersRepository = getCustomRepository(OrdersRepository);
@@ -22,15 +19,15 @@ export default class CreateOrderService {
     const productRepository = getCustomRepository(ProductRepository);
 
     const customerExist = await customerRepository.findById(customer_id);
-
+   
     if (!customerExist) {
-      throw new AppError('Could not find any customer with the given id.')
+      throw new AppError('Could not find any customer with the given id.', 404)
     }
 
     const existsProducts = await productRepository.findAllByIds(products)
 
     if(!existsProducts.length) {
-      throw new AppError('Could not find any product with the given ids.')
+      throw new AppError('Could not find any product with the given ids.', 404)
     }
 
     const existsProductsIds = existsProducts.map((product) => product.id);
@@ -38,9 +35,9 @@ export default class CreateOrderService {
     const checkInexistentProducts = products.filter(
       product => !existsProductsIds.includes(product.id)
     )
-
+    
     if(checkInexistentProducts.length) {
-      throw new AppError(`Could not find any product ${checkInexistentProducts[0].id}`)
+      throw new AppError(`Could not find any product ${checkInexistentProducts[0].id}`, 404)
     }
 
     const quantityAvailable = products.filter(
@@ -48,9 +45,9 @@ export default class CreateOrderService {
     );
 
     if(checkInexistentProducts.length){
-      throw new AppError(`The quantity ${quantityAvailable[0].quantity} is not available for ${quantityAvailable[0].id}.`)
+      throw new AppError(`The quantity ${quantityAvailable[0].quantity} is not available for ${quantityAvailable[0].id}.`, 404)
     }
-
+    
     const serializedProducts = products.map(
       product => ({
         product_id: product.id,
@@ -58,19 +55,20 @@ export default class CreateOrderService {
         price: existsProducts.filter(p => p.id === product.id)[0].price,
       })
     )
-
+    
     const order = await ordersRepository.createOrder({
       customer: customerExist,
       products: serializedProducts,
     });
 
     const {order_products} = order;
-
-    const updateProductQuantity = order_products.map(product => ({
-      id: product.product.id,
-      quantity: existsProducts.filter(p => p.id === product.product.id)[0].quantity - product.quantity,
+    
+    const updateProductQuantity = order_products.map(
+      product => ({
+      id: product.product_id,
+      quantity: existsProducts.filter(p => p.id === product.product_id)[0].quantity - product.quantity,
     }));
-
+    
       await productRepository.save(updateProductQuantity)
 
     return order;
