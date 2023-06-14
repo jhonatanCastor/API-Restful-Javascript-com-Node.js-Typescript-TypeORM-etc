@@ -13,7 +13,7 @@ export default class CreateCustomerService {
     const customerxist = await customerRepository.findEmail(email);
 
     if (customerxist) {
-      throw new AppError("E-mail address already used.");
+      throw new AppError("E-mail address already used.", 404);
     }
 
     const customer = customerRepository.create({

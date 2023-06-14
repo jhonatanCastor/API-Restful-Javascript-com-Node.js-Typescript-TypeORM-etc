@@ -13,7 +13,7 @@ export default class ShowCustomerService {
     const customer = await customerRepository.findById(id);
 
     if (!customer) {
-      throw new AppError("User not found");
+      throw new AppError("User not found", 404);
     }
     
     return customer;
