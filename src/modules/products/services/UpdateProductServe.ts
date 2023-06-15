@@ -1,6 +1,7 @@
 import { getCustomRepository } from "typeorm";
 import Product from "../product";
 import { ProductRepository } from "../productRepository";
+import RedisCache from "@shared/cache/RedisCache";
 interface IRequest {
   user_id: string | number;
   name: string;
@@ -22,7 +23,13 @@ class UpdateProductServe {
     if (!product) {
       throw new Error('Product not found');
     }
-     
+
+    const redisCache = new RedisCache();
+
+    await redisCache.invalidate('api-vendas-PRODUCT_LIST')
+    const test = await redisCache.recover('api-vendas-PRODUCT_LIST')
+    console.log('REDIS', test)
+
     product.name = name;
     product.price = price;
     product.quantity = quantity;
